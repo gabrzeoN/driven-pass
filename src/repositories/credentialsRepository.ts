@@ -21,3 +21,9 @@ export async function getById(id: number) {
 export async function insert(credential: DbInsertionData) {
     return await prisma.credential.create({data: credential});
 }
+
+
+export async function deleteById(id: number) {
+    await prisma.credential.delete({where: {id}});
+    return;
+}

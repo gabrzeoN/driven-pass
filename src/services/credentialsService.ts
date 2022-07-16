@@ -2,7 +2,6 @@ import * as credentialsRepository from "../repositories/credentialsRepository.js
 import * as cryptationUtil from "../utils/cryptationUtil.js";
 import { Credential, Annotation, Card, Wifi } from "@prisma/client";
 
-
 async function titleMustNotBeInUse(title: string, userId: number) {
     const credential = await credentialsRepository.getByTitleAndUserId(title, userId);
     if(credential){
@@ -32,15 +31,22 @@ export async function createCredential(newCredential: credentialsRepository.DbIn
     return;
 }
 
-export async function getAllUserCredentials(userId: number) {
+export async function getAllCredentials(userId: number) {
     const credentials = await credentialsRepository.getByUserId(userId);
     const credentialsWithDecryptedPassword = cryptationUtil.softDecryptAllPasswords(credentials);
     return credentialsWithDecryptedPassword;
 }
 
-export async function getOneUserCredential(id: number, userId: number) {
+export async function getCredential(id: number, userId: number) {
     const credential = await credentialMustExist(id);
     userMustOwnRegister(credential, userId);
     const credentialWithDecryptedPassword = cryptationUtil.softDecryptAllPasswords([credential]);
     return credentialWithDecryptedPassword;
+}
+
+export async function deleteCredential(id: number, userId: number) {
+    const credential = await credentialMustExist(id);
+    userMustOwnRegister(credential, userId);
+    await credentialsRepository.deleteById(credential.id);
+    return;
 }
