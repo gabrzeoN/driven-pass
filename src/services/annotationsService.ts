@@ -31,11 +31,11 @@ export async function createAnnotation(newAnnotation: annotationsRepository.DbIn
     return;
 }
 
-// export async function getAllannotations(userId: number) {
-//     const annotations = await annotationsRepository.getByUserId(userId);
-//     const annotationsWithDecryptedPassword = cryptationUtil.softDecryptAllNotes(annotations);
-//     return annotationsWithDecryptedPassword;
-// }
+export async function getAllAnnotations(userId: number) {
+    const annotations = await annotationsRepository.getByUserId(userId);
+    const annotationsWithDecryptedNote = cryptationUtil.softDecryptAllNotes(annotations);
+    return annotationsWithDecryptedNote;
+}
 
 export async function getAnnotation(id: number, userId: number) {
     const annotation = await annotationMustExist(id);
@@ -44,9 +44,9 @@ export async function getAnnotation(id: number, userId: number) {
     return annotationWithDecryptedNote;
 }
 
-// export async function deleteannotation(id: number, userId: number) {
-//     const annotation = await annotationMustExist(id);
-//     userMustOwnRegister(annotation, userId);
-//     await annotationsRepository.deleteById(annotation.id);
-//     return;
-// }
+export async function deleteAnnotation(id: number, userId: number) {
+    const annotation = await annotationMustExist(id);
+    userMustOwnRegister(annotation, userId);
+    await annotationsRepository.deleteById(annotation.id);
+    return;
+}

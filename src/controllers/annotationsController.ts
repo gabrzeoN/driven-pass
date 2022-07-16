@@ -9,11 +9,11 @@ export async function createAnnotation(req: Request, res: Response) {
     return res.sendStatus(201);
 }
 
-// export async function getAllCredentials(req: Request, res: Response) {
-//     const { userId } : { userId: number } = res.locals.userId;
-//     const credentials = await credentialsService.getAllCredentials(userId);
-//     return res.status(200).send(credentials);
-// }
+export async function getAllAnnotations(req: Request, res: Response) {
+    const { userId } : { userId: number } = res.locals.userId;
+    const annotations = await annotationsService.getAllAnnotations(userId);
+    return res.status(200).send(annotations);
+}
 
 export async function getAnnotation(req: Request, res: Response) {
     const  annotationId: number = parseInt(req.params.annotationId);
@@ -27,14 +27,14 @@ export async function getAnnotation(req: Request, res: Response) {
     return res.status(200).send(annotation);
 }
 
-// export async function deleteCredential(req: Request, res: Response) {
-//     const  credentialId: number = parseInt(req.params.credentialId);
-//     const { userId } : { userId: number } = res.locals.userId;
+export async function deleteAnnotation(req: Request, res: Response) {
+    const  annotationId: number = parseInt(req.params.annotationId);
+    const { userId } : { userId: number } = res.locals.userId;
 
-//     if(!credentialId){
-//         throw {type: "badRequest", message: "Credential ID must be a number!"}; 
-//     }
+    if(!annotationId){
+        throw {type: "badRequest", message: "Annotation ID must be a number!"}; 
+    }
 
-//     await credentialsService.deleteCredential(credentialId, userId);
-//     return res.sendStatus(202);
-// }
+    await annotationsService.deleteAnnotation(annotationId, userId);
+    return res.sendStatus(202);
+}
