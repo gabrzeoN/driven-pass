@@ -15,17 +15,17 @@ export async function createAnnotation(req: Request, res: Response) {
 //     return res.status(200).send(credentials);
 // }
 
-// export async function getCredential(req: Request, res: Response) {
-//     const  credentialId: number = parseInt(req.params.credentialId);
-//     const { userId } : { userId: number } = res.locals.userId;
+export async function getAnnotation(req: Request, res: Response) {
+    const  annotationId: number = parseInt(req.params.annotationId);
+    const { userId } : { userId: number } = res.locals.userId;
 
-//     if(!credentialId){
-//         throw {type: "badRequest", message: "Credential ID must be a number!"}; 
-//     }
+    if(!annotationId){
+        throw {type: "badRequest", message: "Annotation ID must be a number!"}; 
+    }
 
-//     const credential = await credentialsService.getCredential(credentialId, userId);
-//     return res.status(200).send(credential);
-// }
+    const annotation = await annotationsService.getAnnotation(annotationId, userId);
+    return res.status(200).send(annotation);
+}
 
 // export async function deleteCredential(req: Request, res: Response) {
 //     const  credentialId: number = parseInt(req.params.credentialId);

@@ -33,16 +33,16 @@ export async function createAnnotation(newAnnotation: annotationsRepository.DbIn
 
 // export async function getAllannotations(userId: number) {
 //     const annotations = await annotationsRepository.getByUserId(userId);
-//     const annotationsWithDecryptedPassword = cryptationUtil.softDecryptAllPasswords(annotations);
+//     const annotationsWithDecryptedPassword = cryptationUtil.softDecryptAllNotes(annotations);
 //     return annotationsWithDecryptedPassword;
 // }
 
-// export async function getannotation(id: number, userId: number) {
-//     const annotation = await annotationMustExist(id);
-//     userMustOwnRegister(annotation, userId);
-//     const annotationWithDecryptedPassword = cryptationUtil.softDecryptAllPasswords([annotation]);
-//     return annotationWithDecryptedPassword;
-// }
+export async function getAnnotation(id: number, userId: number) {
+    const annotation = await annotationMustExist(id);
+    userMustOwnRegister(annotation, userId);
+    const annotationWithDecryptedNote = cryptationUtil.softDecryptAllNotes([annotation]);
+    return annotationWithDecryptedNote;
+}
 
 // export async function deleteannotation(id: number, userId: number) {
 //     const annotation = await annotationMustExist(id);
