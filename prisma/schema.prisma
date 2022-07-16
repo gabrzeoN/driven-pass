@@ -29,7 +29,6 @@ model Session {
   userId    Int
   token     String   @unique
   createdAt DateTime @default(now())
-  status    Boolean  @default(true)
 
   user User @relation(fields: [userId], references: [id])
   @@map("sessions")
