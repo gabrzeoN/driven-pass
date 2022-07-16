@@ -8,6 +8,16 @@ export async function getByTitleAndUserId(title: string, userId: number) {
     return await prisma.credential.findUnique({where: {userId_title: {userId, title}}});
 }
 
+export async function getByUserId(userId: number) {
+    const credentials = await prisma.credential.findMany({where: {userId}});
+    return credentials;
+}
+
+export async function getById(id: number, userId: number) {
+    const credential = await prisma.credential.findFirst({where: {id, userId}});
+    return credential;
+}
+
 export async function insert(credential: DbInsertionData) {
     return await prisma.credential.create({data: credential});
 }
