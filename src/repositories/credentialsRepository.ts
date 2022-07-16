@@ -13,8 +13,8 @@ export async function getByUserId(userId: number) {
     return credentials;
 }
 
-export async function getById(id: number, userId: number) {
-    const credential = await prisma.credential.findFirst({where: {id, userId}});
+export async function getById(id: number) {
+    const credential = await prisma.credential.findFirst({where: {id}});
     return credential;
 }
 
