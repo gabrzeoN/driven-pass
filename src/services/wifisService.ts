@@ -23,11 +23,11 @@ export async function createWifi(newWifi: wifisRepository.DbInsertionData) {
     return;
 }
 
-// export async function getAllAnnotations(userId: number) {
-//     const annotations = await wifisRepository.getByUserId(userId);
-//     const annotationsWithDecryptedNote = cryptationUtil.softDecryptAllNotes(annotations);
-//     return annotationsWithDecryptedNote;
-// }
+export async function getAllWifis(userId: number) {
+    const wifis = await wifisRepository.getByUserId(userId);
+    const wifisWithDecryptedPassword = cryptationUtil.softDecryptAllPasswords(wifis);
+    return wifisWithDecryptedPassword;
+}
 
 export async function getWifi(id: number, userId: number) {
     const wifi = await wifiMustExist(id);

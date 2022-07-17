@@ -9,11 +9,11 @@ export async function createWifi(req: Request, res: Response) {
     return res.sendStatus(201);
 }
 
-// export async function getAllAnnotations(req: Request, res: Response) {
-//     const { userId } : { userId: number } = res.locals.userId;
-//     const annotations = await wifisService.getAllAnnotations(userId);
-//     return res.status(200).send(annotations);
-// }
+export async function getAllWifis(req: Request, res: Response) {
+    const { userId } : { userId: number } = res.locals.userId;
+    const wifis = await wifisService.getAllWifis(userId);
+    return res.status(200).send(wifis);
+}
 
 export async function getWifi(req: Request, res: Response) {
     const  wifiId: number = parseInt(req.params.wifiId);
