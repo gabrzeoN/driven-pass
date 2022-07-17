@@ -33,15 +33,15 @@ export async function createCard(req: Request, res: Response) {
 //     return res.status(200).send(wifis);
 // }
 
-// export async function getCard(req: Request, res: Response) {
-//     const  wifiId: number = parseInt(req.params.wifiId);
-//     const { userId } : { userId: number } = res.locals.userId;
-//     if(!wifiId){
-//         throw {type: "badRequest", message: "Wifi ID must be a number!"}; 
-//     }
-//     const wifi = await cardsService.getWifi(wifiId, userId);
-//     return res.status(200).send(wifi);
-// }
+export async function getCard(req: Request, res: Response) {
+    const  cardId: number = parseInt(req.params.cardId);
+    const { userId } : { userId: number } = res.locals.userId;
+    if(!cardId){
+        throw {type: "badRequest", message: "Card ID must be a number!"}; 
+    }
+    const card = await cardsService.getCard(cardId, userId);
+    return res.status(200).send(card);
+}
 
 // export async function deleteCard(req: Request, res: Response) {
 //     const  wifiId: number = parseInt(req.params.wifiId);

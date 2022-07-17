@@ -42,12 +42,12 @@ export async function createCard(newCard: cardsRepository.DbInsertionData) {
 //     return wifisWithDecryptedPassword;
 // }
 
-// export async function getWifi(id: number, userId: number) {
-//     const wifi = await wifiMustExist(id);
-//     userMustOwnRegister(wifi, userId);
-//     const wifiWithDecryptedNote = cryptationUtil.softDecryptAllPasswords([wifi]);
-//     return wifiWithDecryptedNote;
-// }
+export async function getCard(id: number, userId: number) {
+    const card = await cardMustExist(id);
+    userMustOwnRegister(card, userId);
+    const cardDecrypted = cryptationUtil.softDecryptAllCards([card]);
+    return cardDecrypted;
+}
 
 // export async function deleteWifi(id: number, userId: number) {
 //     const wifi = await wifiMustExist(id);
