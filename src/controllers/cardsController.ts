@@ -27,11 +27,11 @@ export async function createCard(req: Request, res: Response) {
     return res.sendStatus(201);
 }
 
-// export async function getAllCards(req: Request, res: Response) {
-//     const { userId } : { userId: number } = res.locals.userId;
-//     const wifis = await cardsService.getAllWifis(userId);
-//     return res.status(200).send(wifis);
-// }
+export async function getAllCards(req: Request, res: Response) {
+    const { userId } : { userId: number } = res.locals.userId;
+    const cards = await cardsService.getAllCards(userId);
+    return res.status(200).send(cards);
+}
 
 export async function getCard(req: Request, res: Response) {
     const  cardId: number = parseInt(req.params.cardId);

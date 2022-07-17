@@ -36,11 +36,11 @@ export async function createCard(newCard: cardsRepository.DbInsertionData) {
     return;
 }
 
-// export async function getAllWifis(userId: number) {
-//     const wifis = await cardsRepository.getByUserId(userId);
-//     const wifisWithDecryptedPassword = cryptationUtil.softDecryptAllPasswords(wifis);
-//     return wifisWithDecryptedPassword;
-// }
+export async function getAllCards(userId: number) {
+    const cards = await cardsRepository.getByUserId(userId);
+    const cardsDecrypted = cryptationUtil.softDecryptAllCards(cards);
+    return cardsDecrypted;
+}
 
 export async function getCard(id: number, userId: number) {
     const card = await cardMustExist(id);
