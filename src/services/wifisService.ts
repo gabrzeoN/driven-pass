@@ -36,9 +36,9 @@ export async function getWifi(id: number, userId: number) {
     return wifiWithDecryptedNote;
 }
 
-// export async function deleteAnnotation(id: number, userId: number) {
-//     const annotation = await annotationMustExist(id);
-//     userMustOwnRegister(annotation, userId);
-//     await wifisRepository.deleteById(annotation.id);
-//     return;
-// }
+export async function deleteWifi(id: number, userId: number) {
+    const wifi = await wifiMustExist(id);
+    userMustOwnRegister(wifi, userId);
+    await wifisRepository.deleteById(wifi.id);
+    return;
+}
