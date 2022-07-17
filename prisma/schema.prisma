@@ -43,8 +43,8 @@ model Credential {
   password    String
 
   user User @relation(fields: [userId], references: [id])
-  @@map("credentials")
   @@unique(fields: [userId, title])
+  @@map("credentials")
 }
 
 model Annotation {
@@ -54,24 +54,25 @@ model Annotation {
   note   String @db.VarChar(1000)
 
   user User @relation(fields: [userId], references: [id])
-  @@map("annotations")
   @@unique(fields: [userId, title])
+  @@map("annotations")
 }
 
 model Card {
   id             Int     @id @default(autoincrement())
   userId         Int
   title          String
+  cardholderName String
   number         String
   securityCode   String
   expirationDate String
   password       String
-  type           String
+  type           EnumCardTypes
   isVirtual      Boolean @default(false)
 
   user User @relation(fields: [userId], references: [id])
-  @@map("cards")
   @@unique(fields: [userId, title])
+  @@map("cards")
 }
 
 model Wifi {
@@ -83,4 +84,10 @@ model Wifi {
 
   user User @relation(fields: [userId], references: [id])
   @@map("wifis")
+}
+
+enum EnumCardTypes {
+  credit
+  debit
+  both
 }
