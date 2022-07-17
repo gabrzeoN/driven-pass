@@ -49,9 +49,9 @@ export async function getCard(id: number, userId: number) {
     return cardDecrypted;
 }
 
-// export async function deleteWifi(id: number, userId: number) {
-//     const wifi = await wifiMustExist(id);
-//     userMustOwnRegister(wifi, userId);
-//     await cardsRepository.deleteById(wifi.id);
-//     return;
-// }
+export async function deleteCard(id: number, userId: number) {
+    const card = await cardMustExist(id);
+    userMustOwnRegister(card, userId);
+    await cardsRepository.deleteById(card.id);
+    return;
+}
